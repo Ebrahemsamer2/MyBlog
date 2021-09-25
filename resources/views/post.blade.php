@@ -12,7 +12,7 @@
 						<div class="row row-pb-lg">
 							<div class="col-md-12 animate-box">
 								<div class="classes class-single">
-									<div class="classes-img" style="background-image: url(blog_template/images/classes-1.jpg);">
+									<div class="classes-img" style="background-image: url(/blog_template/images/classes-1.jpg);">
 									</div>
 									<div class="desc desc2">
 										<h3><a href="#">Developing Mobile Apps</a></h3>
@@ -31,89 +31,60 @@
 							</div>
 						</div>
 						<div class="row row-pb-lg animate-box">
+
 							<div class="col-md-12">
-								<h2 class="colorlib-heading-2">23 Comments</h2>
-								<div class="review">
-						   		<div class="user-img" style="background-image: url(blog_template/images/person1.jpg)"></div>
-						   		<div class="desc">
-						   			<h4>
-						   				<span class="text-left">Jacob Webb</span>
-						   				<span class="text-right">24 March 2018</span>
-						   			</h4>
-						   			<p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrov</p>
-						   			<p class="star">
-					   					<span class="text-left"><a href="#" class="reply"><i class="icon-reply"></i></a></span>
-						   			</p>
-						   		</div>
-						   	</div>
-						   	<div class="review">
-						   		<div class="user-img" style="background-image: url(blog_template/images/person2.jpg)"></div>
-						   		<div class="desc">
-						   			<h4>
-						   				<span class="text-left">Jacob Webb</span>
-						   				<span class="text-right">24 March 2018</span>
-						   			</h4>
-						   			<p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrov</p>
-						   			<p class="star">
-					   					<span class="text-left"><a href="#" class="reply"><i class="icon-reply"></i></a></span>
-						   			</p>
-						   		</div>
-						   	</div>
-						   	<div class="review">
-						   		<div class="user-img" style="background-image: url(blog_template/images/person3.jpg)"></div>
-						   		<div class="desc">
-						   			<h4>
-						   				<span class="text-left">Jacob Webb</span>
-						   				<span class="text-right">24 March 2018</span>
-						   			</h4>
-						   			<p>When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrov</p>
-						   			<p class="star">
-					   					<span class="text-left"><a href="#" class="reply"><i class="icon-reply"></i></a></span>
-						   			</p>
-						   		</div>
-						   	</div>
+								<h2 class="colorlib-heading-2">{{ count($post->comments) }} Comments</h2>
+
+								@foreach($post->comments as $comment)
+								<div id="comment_{{ $comment->id }}" class="review">
+							   		<div 
+							   		class="user-img" 
+							   		style="background-image: url({{ $comment->user->image ? asset('storage/' . $comment->user->image->path. '') : 'https://images.assetsdelivery.com/compings_v2/salamatik/salamatik1801/salamatik180100019.jpg'  }});"></div>
+							   		<div class="desc">
+							   			<h4>
+							   				<span class="text-left">{{ $comment->user->name }}</span>
+							   				<span class="text-right">{{ $comment->created_at->diffForHumans() }}</span>
+							   			</h4>
+							   			<p>{{ $comment->the_comment }}</p>
+							   			<p class="star">
+						   					<span class="text-left"><a href="#" class="reply"><i class="icon-reply"></i></a></span>
+							   			</p>
+							   		</div>
+							   	</div>
+							   	@endforeach
+
+
 							</div>
 						</div>
 				
 						<div class="row animate-box">
 							<div class="col-md-12">
+
+								<x-blog.message :status="'success'"/>
+
 								<h2 class="colorlib-heading-2">Say something</h2>
-								<form action="#">
-									<div class="row form-group">
-										<div class="col-md-6">
-											<!-- <label for="fname">First Name</label> -->
-											<input type="text" id="fname" class="form-control" placeholder="Your firstname">
-										</div>
-										<div class="col-md-6">
-											<!-- <label for="lname">Last Name</label> -->
-											<input type="text" id="lname" class="form-control" placeholder="Your lastname">
-										</div>
-									</div>
 
-									<div class="row form-group">
-										<div class="col-md-12">
-											<!-- <label for="email">Email</label> -->
-											<input type="text" id="email" class="form-control" placeholder="Your email address">
-										</div>
-									</div>
+								@auth
 
-									<div class="row form-group">
-										<div class="col-md-12">
-											<!-- <label for="subject">Subject</label> -->
-											<input type="text" id="subject" class="form-control" placeholder="Your subject of this message">
-										</div>
-									</div>
-
+								<form method="POST" action="{{ route('posts.add_comment', $post) }}">
+									@csrf
+									
 									<div class="row form-group">
 										<div class="col-md-12">
 											<!-- <label for="message">Message</label> -->
-											<textarea name="message" id="message" cols="30" rows="10" class="form-control" placeholder="Say something about us"></textarea>
+											<textarea name="the_comment" id="the_comment" cols="30" rows="10" class="form-control" placeholder="Say something about us"></textarea>
 										</div>
 									</div>
 									<div class="form-group">
 										<input type="submit" value="Post Comment" class="btn btn-primary">
 									</div>
-								</form>	
+								</form>
+
+								@endauth
+
+								@guest
+								<p class="lead"><a href="{{ route('login') }}">Login </a> OR <a href="{{ route('register') }}">Register</a> to write comments</p>
+								@endguest	
 							</div>
 						</div>
 					</div>
@@ -121,64 +92,13 @@
 					<!-- SIDEBAR: start -->
 					<div class="col-md-4 animate-box">
 						<div class="sidebar">
-							<div class="side">
-								<h3 class="sidebar-heading">Categories</h3>
-								<div class="block-24">
-				               <ul>
-				                  <li><a href="#">Education <span>10</span></a></li>
-				                  <li><a href="#">Courses <span>43</span></a></li>
-				                	<li><a href="#">Fashion <span>21</span></a></li>
-				                	<li><a href="#">Business <span>65</span></a></li>
-				                	<li><a href="#">Marketing <span>34</span></a></li>
-				                	<li><a href="#">Travel <span>45</span></a></li>
-				                	<li><a href="#">Video <span>22</span></a></li>
-				                	<li><a href="#">Audio <span>13</span></a></li>
-				               </ul>
-				            </div>
-							</div>
-							<div class="side">
-								<h3 class="sidebar-heading">Recent Blog</h3>
-								<div class="f-blog">
-									<a href="blog.html" class="blog-img" style="background-image: url(blog_template/images/blog-1.jpg);">
-									</a>
-									<div class="desc">
-										<p class="admin"><span>18 April 2018</span></p>
-										<h2><a href="blog.html">Creating Mobile Apps</a></h2>
-										<p>Far far away, behind the word mountains</p>
-									</div>
-								</div>
-								<div class="f-blog">
-									<a href="blog.html" class="blog-img" style="background-image: url(blog_template/images/blog-2.jpg);">
-									</a>
-									<div class="desc">
-										<p class="admin"><span>18 April 2018</span></p>
-										<h2><a href="blog.html">Creating Mobile Apps</a></h2>
-										<p>Far far away, behind the word mountains</p>
-									</div>
-								</div>
-								<div class="f-blog">
-									<a href="blog.html" class="blog-img" style="background-image: url(blog_template/images/blog-3.jpg);">
-									</a>
-									<div class="desc">
-										<p class="admin"><span>18 April 2018</span></p>
-										<h2><a href="blog.html">Creating Mobile Apps</a></h2>
-										<p>Far far away, behind the word mountains</p>
-									</div>
-								</div>
-							</div>
-							<div class="side">
-								<h3 class="sidbar-heading">Tags</h3>
-								<div class="block-26">
-				               <ul>
-				                	<li><a href="#">code</a></li>
-				                	<li><a href="#">design</a></li>
-				                	<li><a href="#">typography</a></li>
-				                	<li><a href="#">development</a></li>
-				                	<li><a href="#">creative</a></li>
-				                	<li><a href="#">codehack</a></li>
-				             	</ul>
-				            </div>
-							</div>
+
+							<x-blog.side-categories :categories="$categories"/>
+
+		                    <x-blog.side-recent-posts :recentPosts="$recent_posts"/>
+
+		                    <x-blog.side-tags :tags="$tags"/>
+		                    
 						</div>
 					</div>
 				</div>
