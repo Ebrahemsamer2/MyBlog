@@ -33,43 +33,44 @@
 					<div class="col-md-12">
 						<h2>Message Us</h2>
 					</div>
+
 					<div class="col-md-6">
-						<form action="#">
+						<form autocomplete="off" method="POST" action="{{ route('contact.store') }}">
+							@csrf
 							<div class="row form-group">
 								<div class="col-md-6">
-									<!-- <label for="fname">First Name</label> -->
-									<input type="text" id="fname" class="form-control" placeholder="Your firstname">
+									<x-blog.form.input value='{{ old("first_name") }}' placeholder='Your Firstname' name="first_name" />
+
 								</div>
 								<div class="col-md-6">
-									<!-- <label for="lname">Last Name</label> -->
-									<input type="text" id="lname" class="form-control" placeholder="Your lastname">
+									<x-blog.form.input value='{{ old("last_name") }}' placeholder='Your Lastname' name="last_name" />
 								</div>
 							</div>
 
 							<div class="row form-group">
 								<div class="col-md-12">
-									<!-- <label for="email">Email</label> -->
-									<input type="text" id="email" class="form-control" placeholder="Your email address">
+									<x-blog.form.input value='{{ old("email") }}' placeholder='Your Email' type='email' name="email" />
 								</div>
 							</div>
 
 							<div class="row form-group">
 								<div class="col-md-12">
-									<!-- <label for="subject">Subject</label> -->
-									<input type="text" id="subject" class="form-control" placeholder="Your subject of this message">
+									<x-blog.form.input value='{{ old("subject") }}' required='false' name="subject" placeholder='Your Subject' />
 								</div>
 							</div>
 
 							<div class="row form-group">
 								<div class="col-md-12">
-									<!-- <label for="message">Message</label> -->
-									<textarea name="message" id="message" cols="30" rows="10" class="form-control" placeholder="Say something about us"></textarea>
+									<x-blog.form.textarea value='{{ old("message") }}' placeholder='What you want to tell us.' name="message" />
 								</div>
 							</div>
 							<div class="form-group">
 								<input type="submit" value="Send Message" class="btn btn-primary">
 							</div>
-						</form>		
+						</form>
+
+						<x-blog.message :status="'success'" />
+						
 					</div>
 					<div class="col-md-6">
 						<div id="map" class="colorlib-map"></div>
