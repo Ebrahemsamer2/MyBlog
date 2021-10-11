@@ -30,7 +30,7 @@ class PostFactory extends Factory
             'excerpt' => $this->faker->sentence(),
             'body' => $this->faker->paragraph(),
             'user_id' => User::factory(),
-            'category_id' => Category::factory(),
+            'category_id' => Category::all()->random()->id,
         ];
     }
 }

@@ -6,7 +6,7 @@
        <ul>
         @foreach($tags as $tag)
             <li>
-                <a href="#">{{ $tag->name }}</a>
+                <a href="{{ route('tags.show', $tag) }}">{{ $tag->name }}</a>
             </li>
         @endforeach
         </ul>
