@@ -5,6 +5,7 @@
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name='csrf-token' content="{{ csrf_token() }}">
 	<!--favicon-->
 	<link rel="icon" href="{{ asset('admin_dashboard_assets/images/favicon-32x32.png') }}" type="image/png" />
 	<!--plugins-->
@@ -25,10 +26,17 @@
     <link rel="stylesheet" href="{{ asset('admin_dashboard_assets/css/dark-theme.css') }}" />
     <link rel="stylesheet" href="{{ asset('admin_dashboard_assets/css/semi-dark.css') }}" />
     <link rel="stylesheet" href="{{ asset('admin_dashboard_assets/css/header-colors.css') }}" />
+    <link rel="stylesheet" href="{{ asset('admin_dashboard_assets/css/my_style.css') }}" />
+    
     <title>Rocker - Bootstrap 5 Admin Dashboard Template</title>
 </head>
 
 <body>
+
+    @if(Session::has('success'))
+        <div class='general-message alert alert-info'>{{ Session::get('success') }}</div>
+    @endif
+
 	<!--wrapper-->
 	<div class="wrapper">
 		<!--start header -->

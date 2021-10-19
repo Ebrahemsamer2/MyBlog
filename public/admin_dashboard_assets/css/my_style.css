@@ -1,0 +1,10 @@
+.general-message
+{
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    z-index: 5;
+    min-width: 500px;
+    border-radius: 50px;
+    color: #525252;
+}
