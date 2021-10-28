@@ -50,6 +50,15 @@
                         
                     </ul>
                 </li>
+
+                <li>
+                    <a href="{{ route('admin.tags.index') }}">
+                    <div class="parent-icon"><i class='bx bx-purchase-tag'></i></div>
+                        <div class="menu-title">Tags</div>
+                    </a>
+                </li>
+
+
             </ul>
             <!--end navigation-->
         </div>
