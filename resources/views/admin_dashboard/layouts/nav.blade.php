@@ -59,6 +59,23 @@
                 </li>
 
 
+                <li>
+                    <a href="javascript:;" class="has-arrow">
+                        <div class="parent-icon"><i class='bx bx-comment-dots'></i>
+                        </div>
+                        <div class="menu-title">Comments</div>
+                    </a>
+
+                    <ul>
+                        <li> <a href="{{ route('admin.comments.index') }}"><i class="bx bx-right-arrow-alt"></i>All Comments</a>
+                        </li>
+                        <li> <a href="{{ route('admin.comments.create') }}"><i class="bx bx-right-arrow-alt"></i>Add New Comment</a>
+                        </li>
+                        
+                    </ul>
+                </li>
+
+
             </ul>
             <!--end navigation-->
         </div>
