@@ -90,7 +90,23 @@
                         </li>
                         
                     </ul>
-                </li>                
+                </li>    
+                
+                <li>
+                    <a href="javascript:;" class="has-arrow">
+                        <div class="parent-icon"><i class='bx bx-user'></i>
+                        </div>
+                        <div class="menu-title">Users</div>
+                    </a>
+
+                    <ul>
+                        <li> <a href="{{ route('admin.users.index') }}"><i class="bx bx-right-arrow-alt"></i>All Users</a>
+                        </li>
+                        <li> <a href="{{ route('admin.users.create') }}"><i class="bx bx-right-arrow-alt"></i>Add New User</a>
+                        </li>
+                        
+                    </ul>
+                </li>    
 
 
             </ul>
