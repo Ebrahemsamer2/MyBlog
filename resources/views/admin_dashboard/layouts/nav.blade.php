@@ -116,6 +116,22 @@
                     </a>
                 </li>
 
+                <li>
+                    <a href="{{ route('admin.setting.edit') }}">
+                    <div class="parent-icon"><i class='bx bx-info-square'></i></div>
+                        <div class="menu-title">Setting</div>
+                    </a>
+                </li>
+
+                <hr>
+                
+                <li>
+                    <a target='_blank' href="{{ route('home') }}">
+                    <div class="parent-icon"><i class='bx bx-pointer'></i></div>
+                        <div class="menu-title">Visit Site</div>
+                    </a>
+                </li>
+
 
             </ul>
             <!--end navigation-->

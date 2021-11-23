@@ -16,7 +16,7 @@
                 {{ \Str::limit( $recent_post->title, 20) }}
                 </a>
             </h2>
-            <p>{{ $recent_post->excerpt }}</p>
+            <p>{{ \Str::limit($recent_post->excerpt, 50) }}</p>
         </div>
     </div>
     @endforeach

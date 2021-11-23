@@ -14,16 +14,16 @@ class AdminPostsController extends Controller
     private $rules = [
         'title' => 'required|max:200',
         'slug' => 'required|max:200',
-        'excerpt' => 'required|max:300',
+        'excerpt' => 'required|max:1000',
         'category_id' => 'required|numeric',
-        'thumbnail' => 'required|file|mimes:jpg,png,webp,svg,jpeg|dimensions:max_width=300,max_height=227',
+        'thumbnail' => 'required|file|mimes:jpg,png,webp,svg,jpeg',
         'body' => 'required',
     ];
 
     public function index()
     {
         return view('admin_dashboard.posts.index', [
-            'posts' => Post::with('category')->get(),
+            'posts' => Post::with('category')->orderBy('id', 'DESC')->get(),
         ]);
     }
 
