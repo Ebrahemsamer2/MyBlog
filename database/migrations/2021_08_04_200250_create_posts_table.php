@@ -24,7 +24,7 @@ class CreatePostsTable extends Migration
             $table->foreignId('category_id');
 
             $table->integer('views')->default(0);
-            $table->string('status')->default('published');
+            $table->boolean('approved')->default(true);
 
             $table->timestamps();
         });

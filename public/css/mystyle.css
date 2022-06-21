@@ -20,6 +20,18 @@
     background: #d81d1d;
 }
 
+.subscribe-error
+{
+    background: #931d1d;
+    border-color: #931d1d;
+}
+
+.subscribe-success
+{
+    background: #15c8ce;
+    border-color: #15c8ce;
+}
+
 /* Categories Page Style */
 
 

@@ -136,6 +136,15 @@
                                             @enderror
                                         </div>
 
+                                        <div class="mb-3">
+                                            <div class="form-check form-switch">
+                                                <input name='approved' {{ $post->approved ? 'checked' : '' }} class="form-check-input" type="checkbox" id="flexSwitchCheckChecked">
+                                                <label class="form-check-label {{ $post->approved ? 'text-success' : 'text-warning' }}" for="flexSwitchCheckChecked">
+                                                    {{ $post->approved ? 'Approved' : 'Not approved' }}
+                                                </label>
+                                            </div>
+                                        </div>
+
                                         <button class='btn btn-primary' type='submit'>Update Post</button>
                                         <a 
                                         class='btn btn-danger'
@@ -148,6 +157,7 @@
                                 
                             </div>
                         </div>
+                        
                     </form>
 
                     <form method='post' id='delete_post_{{ $post->id }}' action="{{ route('admin.posts.destroy', $post) }}">
@@ -157,8 +167,6 @@
 
                 </div>
             </div>
-
-
         </div>
     </div>
     <!--end page wrapper -->
@@ -172,9 +180,6 @@
 <script>
     $(document).ready(function () {
         
-        // $('#image-uploadify').imageuploadify();
-        
-
         $('.single-select').select2({
             theme: 'bootstrap4',
             width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
